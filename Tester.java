@@ -3,7 +3,7 @@ public class Tester {
         Road r = new Road();
         System.out.println(r.toString());
         r.populateCars(5);
-        r.populateStartions(10);
+        r.populateStations(10);
 
         Person a = new Person(5, 7);
         Person b = new Person(2,0);

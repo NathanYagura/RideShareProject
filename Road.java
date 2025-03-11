@@ -8,7 +8,7 @@ public class Road {
     private static final int NUMSTATIONS = 32;
 
     public Road(){
-        stations = new Station(NUMSTATIONS);
+        stations = new Station[NUMSTATIONS];
         for(int i = 0; i < stations.length; i++){
             stations[i] = new Station(i);
         }
@@ -19,20 +19,21 @@ public class Road {
         for(int i = 0; i < numPeople; i++){
             int start = (int)(Math.random() * NUMSTATIONS);
             int stop = (int)(Math.random() * NUMSTATIONS);
-            stations[start].addPersons(new Person(stop, start));
+            stations[start].addPerson(new Person(stop, start));
         }
+    } 
 
     public void populateCars(int numCars){
         for(int i = 0; i < numCars; i++){
             int start = (int)(Math.random() * NUMSTATIONS);
             int stop = (int)(Math.random() * NUMSTATIONS);
-            fleed.add(new Car(stop, start));
+            fleet.add(new Car(stop, start));
         }
     }
 
         public String toString(){
             String s = "Stations: \n";
-            for(Stations st : stations){
+            for(Station st : stations){
                 s += st.toString();
                 s += "\n";
             }
@@ -47,7 +48,7 @@ public class Road {
             for(Car c : fleet){
                 Person p = c.unload();
                 if(p != null){
-                    int location = c.getLocation();
+                    int location = c.getCurrentLocation();
                     stations[location].addPerson(p);
                 } else{
                     break;
@@ -57,4 +58,3 @@ public class Road {
 
 
     }
-}
