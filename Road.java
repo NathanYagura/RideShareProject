@@ -56,5 +56,12 @@ public class Road {
             }
         }
 
+        public int numComplete(){
+            int sum = 0;
+            for(Station r : stations){
+                sum += r.completedCount();
+            }
+            return sum;
+        }
 
     }

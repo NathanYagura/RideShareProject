@@ -1,20 +1,19 @@
 public class Tester {
     public static void main(String[] args){
         Road r = new Road();
+
+        r.populateCars(20);
+        r.populateStations(50);
         System.out.println(r.toString());
-        r.populateCars(5);
-        r.populateStations(10);
 
-        Person a = new Person(5, 7);
-        Person b = new Person(2,0);
-        Person c = new Person(10, 24);
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
+        for(int i = 0; i < 33; i++){
+            r.move();
+        }
 
-        Car n = new Car(5,9);
-        System.out.println(n);
-        n.addPassenger(a);
+        System.out.println(r.toString());
+        System.out.println(r.numComplete());
 
+        System.out.println("Percent completed: ");
+        System.out.println((double)r.numComplete()/50*100);
     }
 }

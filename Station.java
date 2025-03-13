@@ -47,6 +47,10 @@ public class Station {
         return s;
     }
 
+    public int completedCount(){
+        return completed.size();
+    }
+
 
 
 }
