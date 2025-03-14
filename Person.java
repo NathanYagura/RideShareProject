@@ -25,8 +25,8 @@ public class Person{
     public int getStart(){
         return startLocation;
     }
-
+    // to string is used to help keep track of where person needs to go and where it starts relative to cars
     public String toString(){
-        return super.toString() + "Start: " + startLocation + " Destination: " + destination + " Going right? " + direction; 
+        return super.toString() + " Start: " + startLocation + " Destination: " + destination + " Going right? " + direction; 
     }
 }

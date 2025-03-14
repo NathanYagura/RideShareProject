@@ -54,7 +54,37 @@ public class Car {
             currentlocation--;
         }
     }
+    // loadPassengers method loads passengers onto cars that are passing by the stations and going in the same direction needed
+    public void loadPassengers(Station s){
+        Person p = null;
+        if(direction ==true){
+            p = s.nextRight();
 
+        }else{
+            p = s.nextLeft();
+        }
+        
+        while(p != null && hasRoom()){
+            addPassenger(p);
+            if(direction ==true){
+                p = s.nextRight();
+    
+            }else{
+                p = s.nextLeft();
+            }
+        }
+    }
+    // exit method kicks out all passengers to the current station once the car gets to its destination
+    public void exit(Station s){
+        for(int i = 0; i < passengers.size(); i++){
+            Person a = passengers.get(i);
+            passengers.remove(i);
+            i--;
+            s.addPerson(a);
+        }
+    }
+
+    //unload method kicks out passengers whose destination is the current location
     public Person unload(){
         for(int i = 0; i < passengers.size(); i++){
             Person a = passengers.get(i);

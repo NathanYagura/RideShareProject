@@ -13,6 +13,10 @@ public class Station {
         completed = new ArrayList<Person>();
     }
 
+    public boolean empty(){
+        return waitingLeft.size() + waitingRight.size() == 0;
+    }
+
     public void addPerson(Person p){
         if(p.getDestination() == number){
             completed.add(p);
@@ -22,7 +26,7 @@ public class Station {
             waitingLeft.add(p);
         }
     }
-
+    // returns people who are waiting for left
     public Person nextLeft(){
         if(waitingLeft.size() > 0){
             return waitingLeft.remove(0);
@@ -30,7 +34,7 @@ public class Station {
             return null;
         }
     }
-
+    //returns people who are waiting for right
     public Person nextRight(){
         if(waitingRight.size() > 0){
             return waitingRight.remove(0);

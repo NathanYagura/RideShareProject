@@ -34,8 +34,10 @@ public class Road {
         public String toString(){
             String s = "Stations: \n";
             for(Station st : stations){
-                s += st.toString();
-                s += "\n";
+                if(st.empty() == false){
+                    s += st.toString();
+                    s += "\n";
+                }
             }
             s += "Cars:\n";
             for(Car c : fleet){
@@ -43,19 +45,26 @@ public class Road {
             }
             return s;
         }
-
+        //moves every car forward while checking if either the car or the person has reached their destination
         public void move(){
             for(Car c : fleet){
                 Person p = c.unload();
-                if(p != null){
+                while(p != null){
                     int location = c.getCurrentLocation();
                     stations[location].addPerson(p);
+                    p = c.unload();
+                } 
+                c.loadPassengers(stations[c.getCurrentLocation()]);
+
+                if(c.getCurrentLocation() != c.getDestination()){
+                    c.move();
                 } else{
-                    break;
+                    c.exit(stations[c.getCurrentLocation()]);
                 }
+
             }
         }
-
+        //keeps track of how many people go to their destination
         public int numComplete(){
             int sum = 0;
             for(Station r : stations){
